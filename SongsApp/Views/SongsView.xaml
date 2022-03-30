@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SongsApp.ViewModels"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="SongsApp.Views.SongsView"
+             ios:Page.UseSafeArea="True">
+
+    <ContentPage.BindingContext>
+        <vm:SongViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="Get Songs"
+                    Command="{Binding GetSongsCommand}"/>
+
+            <ActivityIndicator Color="Blue"
+                               IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               IsEnabled="{Binding IsBusy}"/>
+
+            <CollectionView ItemsSource="{Binding Songs}"
+                            SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0"
+                                   Text="{Binding SongName}"
+                                   FontAttributes="Bold"
+                                   FontSize="Large"
+                                   TextColor="Orange"/>
+
+                            <Label Grid.Row="1"
+                                   Text="{Binding PartitionKey, StringFormat='By {0}'}"
+                                   FontAttributes="Italic"
+                                   TextColor="Green"/>
+
+                            <Label Grid.Row="2"
+                                   Text="{Binding SongAlbum, StringFormat='Album: {0}'}"
+                                   FontAttributes="Bold"
+                                   FontSize="Small"
+                                   TextColor="Blue"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

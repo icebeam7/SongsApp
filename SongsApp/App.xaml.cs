@@ -1,6 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace SongsApp
 {
@@ -10,7 +8,7 @@ namespace SongsApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new Views.SongsView();
         }
 
         protected override void OnStart()
